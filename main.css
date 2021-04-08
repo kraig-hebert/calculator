@@ -1,6 +1,7 @@
 body {
     margin: 0%;
     padding: 0%;
+    font-family: monospace;
 }
 
 .container {
@@ -17,16 +18,79 @@ body {
     filter: drop-shadow(0px 0px 5px black);
 }
 
-.screen {
+.top {
     width: 500px;
     height: 150px;
     background-color: steelblue;
     border-radius: 25px 25px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.buttons {
+.screen {
+    display: flex;
+    padding: 2px;
+    width: 350px;
+    height: 75px;
+    background-color: darkgray;
+    border: rgb(54, 52, 52) 10px solid;
+    border-radius: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    color: black;
+    font-size: 50px;
+}
+
+.btns {
     width: 500px;
     height: 500px;
     background-color: rgb(199, 175, 114);
     border-radius: 0 0 25px 25px;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+}
+
+.btn-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.btn {
+    height: 75%;
+    border-radius: 10px;
+    border: 0px;
+    filter: drop-shadow(0px 0px 2px rgb(58, 58, 58));
+    font-size: 40px;
+}
+
+.big-btn {
+    width: 45%;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn:hover {
+    filter: drop-shadow(0px 0px 2px rgb(0, 0, 0));
+}
+
+#clear {
+    background-color: chocolate;
+}
+
+#delete {
+    background-color: crimson;
+}
+
+.calc-btn {
+    width: 20%;
+    background-color: lightblue;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
