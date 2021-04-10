@@ -128,7 +128,13 @@ function operate (a, b) {
     if (operator === '+') total = add(a, b);
     else if (operator === '-') total = sub(a, b);
     else if (operator === '*') total = mult(a, b);
-    else if (operator === '/') total = div(a, b);
+    else if (operator === '/') {
+        if (b === 0) {
+            alert('No dividing by 0! TO THE GULAG!');
+            return 0;
+        };
+        total = div(a, b);
+    };
     return checkLength(total);
 };
 
