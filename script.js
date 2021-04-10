@@ -132,8 +132,7 @@ function operate (a, b) {
         if (b === 0) {
             alert('No dividing by 0! TO THE GULAG!');
             return 0;
-        };
-        total = div(a, b);
+        } else total = div(a, b);
     };
     return checkLength(total);
 };
