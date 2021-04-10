@@ -42,13 +42,13 @@ btns.forEach((btn) => {
 
 // create actions
 function checkDecimal (decimal) {
-    if (decimalPresent) false;
+    if (decimalPresent) return false;
     else {
         decimalPresent = true;
         currentNumber += decimal;
         screenData.textContent = currentNumber;
-    }
-}
+    };
+};
 
 function addDigit (digit) {
     if (digit === '0' && currentNumber === '0') return false;
@@ -69,8 +69,7 @@ function addOperator() {
         currentNumber = '0';
         screenData.textContent = '0';
         return true;
-    }
-    else {
+    } else {
         screenData.textContent = operate(parseFloat(a), parseFloat(currentNumber));
         decimalPresent = false;
         a = screenData.textContent;
@@ -106,6 +105,17 @@ function clearScreen () {
     screenData.textContent = currentNumber;
 };
 
+function checkLength (total) {
+    //  return +total.toFixed(9)
+    let index = parseInt(total.toString().indexOf('.'));
+    if (total.toString().length > 10) { 
+        if (index === -1 || index > 10) {
+            alert('Answer to large!');
+            return 0;
+        } else return +total.toFixed(10 - index);
+    } else return total;
+};
+
 // create math functions
 const add = (a, b) => a + b;
 const sub = (a, b) => a - b;
@@ -114,9 +124,11 @@ const div = (a, b) => a / b;
 
 
 function operate (a, b) {
-    if (operator === '+') return add(a, b);
-    else if (operator === '-') return sub(a, b);
-    else if (operator === '*') return mult(a, b);
-    else if (operator === '/') return div(a, b);
+    let total = 0;
+    if (operator === '+') total = add(a, b);
+    else if (operator === '-') total = sub(a, b);
+    else if (operator === '*') total = mult(a, b);
+    else if (operator === '/') total = div(a, b);
+    return checkLength(total);
 };
 
