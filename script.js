@@ -49,8 +49,9 @@ function checkDecimal (decimal) {
         screenData.textContent = currentNumber;
     }
 }
+
 function addDigit (digit) {
-    if (digit === '0' && currentNumber === '0') false;
+    if (digit === '0' && currentNumber === '0') return false;
     else if (currentNumber === '0') {
         currentNumber = digit;
         screenData.textContent = currentNumber;
@@ -61,26 +62,30 @@ function addDigit (digit) {
 };
 
 function addOperator() {
-    if (operator === '' && currentNumber === 0) false;
+    if (operator === '' && currentNumber === 0) return false;
     else if (operator === '') {
+        decimalPresent = false;
         a = currentNumber;
         currentNumber = '0';
         screenData.textContent = '0';
         return true;
     }
     else {
-        screenData.textContent = operate(parseInt(a), parseInt(currentNumber), operator);
+        screenData.textContent = operate(parseFloat(a), parseFloat(currentNumber));
+        decimalPresent = false;
         a = screenData.textContent;
         currentNumber = '0';
         return true;
-    }
-}
+    };
+};
 
 function runEquals () {
-    if (operator === '') false;
-    screenData.textContent = operate(parseInt(a), parseInt(currentNumber), operator);
+    if (operator === '') return false;
+    screenData.textContent = operate(parseFloat(a), parseFloat(currentNumber));
+    decimalPresent = false;
     a = screenData.textContent;
-    currentNumber = '0';
+    currentNumber = a;
+    operator = '';
 };
 
 function deleteNumber () {
@@ -96,7 +101,6 @@ function deleteNumber () {
 function clearScreen () {
     decimalPresent = false;
     a = 0;
-    b = 0;
     operator = '';
     currentNumber = '0';
     screenData.textContent = currentNumber;
@@ -108,7 +112,8 @@ const sub = (a, b) => a - b;
 const mult = (a, b) => a * b;
 const div = (a, b) => a / b;
 
-function operate (a, b, operator) {
+
+function operate (a, b) {
     if (operator === '+') return add(a, b);
     else if (operator === '-') return sub(a, b);
     else if (operator === '*') return mult(a, b);
